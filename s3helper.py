@@ -151,4 +151,42 @@ class S3_helper(object):
         except Exception, e:
             print('delete() exception :%s' % e)
         return None
+
+    def createBucket(self, bucketName=''):
+        print 'createBucket(). bucketName: %s' % bucketName
+
+        if not bucketName:
+            return False
+
+        try:
+            if self.conn.create_bucket(bucketName):
+                return True
+            else:
+                return False
+        except Exception, e:
+            print('createBucket() exception :%s' % e)
+        return None
+
+    def deleteBucket(self, bucketName=''):
+        print 'deleteBucket(). bucketName: %s' % bucketName
+
+        if not bucketName:
+            return False
+
+        try:
+
+            full_bucket = self.conn.get_bucket(bucketName)
+            # It's full of keys. Delete them all.
+            for key in full_bucket.list():
+                key.delete()
+            # The bucket is empty now. Delete it.
+            if self.conn.delete_bucket(bucketName):
+                return True
+            else:
+                return False
+        except Exception, e:
+            print('deleteBucket() exception :%s' % e)
+        return None
+
+
 # end class S3_helper
