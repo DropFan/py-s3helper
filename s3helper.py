@@ -73,8 +73,28 @@ class S3_helper(object):
 
     def isExists(self, key):
         print('isExists().  key: %s' % key)
+        try:
+            k = self.k
+            k.key = key
+
+            if k.exists(None):
+                return True
+            else:
+                return False
+        except Exception, e:
+            print('isExists() exception :%s' % e)
         return None
+
     def delete(self, key):
         print('delete from s3 (). key: %s' % key)
+        try:
+            k = self.k
+            k.key = key
+            if k.delete():
+                return True
+            else:
+                return False
+        except Exception, e:
+            print('delete() exception :%s' % e)
         return None
 # end class S3_helper
