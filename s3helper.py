@@ -204,10 +204,8 @@ class S3_helper(object):
             for key in full_bucket.list():
                 key.delete()
             # The bucket is empty now. Delete it.
-            if self.conn.delete_bucket(bucketName):
-                return True
-            else:
-                return False
+            self.conn.delete_bucket(bucketName)
+            return True
         except Exception, e:
             print('deleteBucket() exception :%s' % e)
         return None
