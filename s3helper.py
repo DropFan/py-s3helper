@@ -38,7 +38,7 @@ class S3_helper(object):
         self.aws_access_key = kwargs['accessKey']
         self.aws_secret_key = kwargs['secretKey']
         if self.bucketName:
-            self.setBucket()
+            self.setBucket(self.bucketName)
         # self.url = 'http://%s.s3-website-ap-northeast-1.amazonaws.com/%s'
         self.url = 'https://s3-%s.amazonaws.com/%s/%s'
 
