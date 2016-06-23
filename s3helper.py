@@ -43,10 +43,34 @@ class S3_helper(object):
 
     def upload(self, key, filepath):
         print('upload to s3: key:%s file: %s' % (key, filepath))
+        try:
+            k = self.k
+            k.key = key
+
+            k.set_contents_from_filename(filepath)
+            # we need to make it public so it can access in public
+            k.make_public()
+            url = self.url % (self.region, self.bucketName, key)
+
+            print('upload to s3 success %s' % self.url)
+            return url
+
+        except Exception, e:
+            print('upload to s3 exception :%s' % e)
         return False
+
     def download(self, key, filename):
         print('download from s3: key:%s file: %s' % (key, filename))
+        try:
+            k = self.k
+            k.key = key
+            k.get_contents_to_filename(filename)
+
+            return True
+        except Exception, e:
+            print('download to s3 exception :%s' % e)
         return False
+
     def isExists(self, key):
         print('isExists().  key: %s' % key)
         return None
