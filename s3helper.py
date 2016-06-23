@@ -7,6 +7,26 @@ from boto.s3.key import Key
 
 
 class S3_helper(object):
+    """docstring for S3_helper
+
+    Attributes:
+        aws_access_key (string): aws_access_key
+        aws_secret_key (string): aws_secret_key
+        region (string): aws regions
+        bucket (object): s3 bucket object
+        bucketName (string): bucket name
+        conn (object): s3 connect object
+        k (string): filename in bucket
+        url (string): s3 url
+    """
+
+    # bucketName = str
+    # aws_access_key = str
+    # aws_secret_key = str
+
+    # conn = object
+    # bucket = object
+
     def __init__(self, **kwargs):
         """
             construct method
@@ -42,6 +62,15 @@ class S3_helper(object):
         print k
 
     def upload(self, key, filepath):
+        """upload to s3
+
+        Args:
+            key (string): filename in bucket
+            filepath (string): file path at local
+
+        Returns:
+            bool: true or false
+        """
         print('upload to s3: key:%s file: %s' % (key, filepath))
         try:
             k = self.k
@@ -60,6 +89,15 @@ class S3_helper(object):
         return False
 
     def download(self, key, filename):
+        """download from s3
+
+        Args:
+            key (string): filename in bucket
+            filename (string): save as filename at local
+
+        Returns:
+            bool: true or false
+        """
         print('download from s3: key:%s file: %s' % (key, filename))
         try:
             k = self.k
@@ -72,6 +110,14 @@ class S3_helper(object):
         return False
 
     def isExists(self, key):
+        """check if it exists in s3
+
+        Args:
+            key (string): filename in bucket
+
+        Returns:
+            bool: true or false
+        """
         print('isExists().  key: %s' % key)
         try:
             k = self.k
@@ -86,6 +132,14 @@ class S3_helper(object):
         return None
 
     def delete(self, key):
+        """delete from s3
+
+        Args:
+            key (string): filename in bucket
+
+        Returns:
+            bool: true or false
+        """
         print('delete from s3 (). key: %s' % key)
         try:
             k = self.k
