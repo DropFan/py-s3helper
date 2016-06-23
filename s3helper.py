@@ -42,7 +42,15 @@ class S3_helper(object):
         # self.url = 'http://%s.s3-website-ap-northeast-1.amazonaws.com/%s'
         self.url = 'https://s3-%s.amazonaws.com/%s/%s'
 
-    def setBucket(self, bucketName=''):
+    def setBucket(self, bucketName):
+        """setBucket
+
+        Args:
+            bucketName (str): bucket name
+
+        Returns:
+            no returns
+        """
         print 'setBucket()  bucketName:%s' % bucketName
         if not bucketName:
             bucketName = self.bucketName
@@ -152,7 +160,15 @@ class S3_helper(object):
             print('delete() exception :%s' % e)
         return None
 
-    def createBucket(self, bucketName=''):
+    def createBucket(self, bucketName):
+        """createBucket
+
+        Args:
+            bucketName (string): bucket name
+
+        Returns:
+            bool: true or false
+        """
         print 'createBucket(). bucketName: %s' % bucketName
 
         if not bucketName:
@@ -167,7 +183,15 @@ class S3_helper(object):
             print('createBucket() exception :%s' % e)
         return None
 
-    def deleteBucket(self, bucketName=''):
+    def deleteBucket(self, bucketName):
+        """deleteBucket
+
+        Args:
+            bucketName (string): bucket name
+
+        Returns:
+            bool: true or false
+        """
         print 'deleteBucket(). bucketName: %s' % bucketName
 
         if not bucketName:
@@ -187,6 +211,5 @@ class S3_helper(object):
         except Exception, e:
             print('deleteBucket() exception :%s' % e)
         return None
-
 
 # end class S3_helper
