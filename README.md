@@ -14,3 +14,7 @@ Author : Tiger (DropFan)
 Email : DropFan@Gmail.com
 
 http://about.me/DropFan
+
+## License
+
+[MIT](https://github.com/DropFan/py-s3helper/blob/master/LICENSE)
