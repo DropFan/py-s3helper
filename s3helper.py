@@ -57,17 +57,22 @@ class S3_helper(object):
         else:
             self.bucketName = bucketName
 
-        # connect to the bucket
-        conn = boto.connect_s3(self.aws_access_key, self.aws_secret_key)
-        bucket = conn.get_bucket(bucketName)
+        try:
+            # connect to the bucket
+            conn = boto.connect_s3(self.aws_access_key, self.aws_secret_key)
+            bucket = conn.get_bucket(bucketName)
 
-        self.conn = conn
-        self.bucket = bucket
+            self.conn = conn
+            self.bucket = bucket
 
-        # create a key to keep track of our file in the storage
-        k = Key(bucket)
-        self.k = k
-        print k
+            # create a key to keep track of our file in the storage
+            k = Key(bucket)
+            self.k = k
+            return True
+        except Exception, e:
+            print 'S3_helper.setBucket()  Exception:%s' % e
+
+        return False
 
     def upload(self, key, filepath):
         """upload to s3
