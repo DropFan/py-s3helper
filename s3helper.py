@@ -51,7 +51,7 @@ class S3_helper(object):
         Returns:
             no returns
         """
-        print 'setBucket()  bucketName:%s' % bucketName
+        print 'S3_helper.setBucket()  bucketName:%s' % bucketName
         if not bucketName:
             bucketName = self.bucketName
         else:
@@ -79,7 +79,7 @@ class S3_helper(object):
         Returns:
             bool: true or false
         """
-        print('upload to s3: key:%s file: %s' % (key, filepath))
+        print('S3_helper.upload() key:%s file: %s' % (key, filepath))
         try:
             k = self.k
             k.key = key
@@ -89,11 +89,11 @@ class S3_helper(object):
             k.make_public()
             url = self.url % (self.region, self.bucketName, key)
 
-            print('upload to s3 success %s' % self.url)
+            print('S3_helper.upload() success %s' % url)
             return url
 
         except Exception, e:
-            print('upload to s3 exception :%s' % e)
+            print('S3_helper.upload() exception :%s' % e)
         return False
 
     def download(self, key, filename):
@@ -106,7 +106,7 @@ class S3_helper(object):
         Returns:
             bool: true or false
         """
-        print('download from s3: key:%s file: %s' % (key, filename))
+        print('S3_helper.download() key:%s file: %s' % (key, filename))
         try:
             k = self.k
             k.key = key
@@ -114,7 +114,7 @@ class S3_helper(object):
 
             return True
         except Exception, e:
-            print('download to s3 exception :%s' % e)
+            print('S3_helper.download() exception :%s' % e)
         return False
 
     def isExists(self, key):
@@ -126,7 +126,7 @@ class S3_helper(object):
         Returns:
             bool: true or false
         """
-        print('isExists().  key: %s' % key)
+        print('S3_helper.isExists() key: %s' % key)
         try:
             k = self.k
             k.key = key
@@ -136,7 +136,7 @@ class S3_helper(object):
             else:
                 return False
         except Exception, e:
-            print('isExists() exception :%s' % e)
+            print('S3_helper.isExists() exception :%s' % e)
         return None
 
     def delete(self, key):
@@ -148,7 +148,7 @@ class S3_helper(object):
         Returns:
             bool: true or false
         """
-        print('delete from s3 (). key: %s' % key)
+        print('S3_helper.delete() key: %s' % key)
         try:
             k = self.k
             k.key = key
@@ -157,7 +157,7 @@ class S3_helper(object):
             else:
                 return False
         except Exception, e:
-            print('delete() exception :%s' % e)
+            print('S3_helper.delete() exception :%s' % e)
         return None
 
     def createBucket(self, bucketName):
@@ -169,7 +169,7 @@ class S3_helper(object):
         Returns:
             bool: true or false
         """
-        print 'createBucket(). bucketName: %s' % bucketName
+        print 'S3_helper.createBucket(). bucketName: %s' % bucketName
 
         if not bucketName:
             return False
@@ -180,7 +180,7 @@ class S3_helper(object):
             else:
                 return False
         except Exception, e:
-            print('createBucket() exception :%s' % e)
+            print('S3_helper.createBucket() exception :%s' % e)
         return None
 
     def deleteBucket(self, bucketName):
@@ -192,7 +192,7 @@ class S3_helper(object):
         Returns:
             bool: true or false
         """
-        print 'deleteBucket(). bucketName: %s' % bucketName
+        print 'S3_helper.deleteBucket() bucketName: %s' % bucketName
 
         if not bucketName:
             return False
@@ -207,7 +207,7 @@ class S3_helper(object):
             self.conn.delete_bucket(bucketName)
             return True
         except Exception, e:
-            print('deleteBucket() exception :%s' % e)
+            print('S3_helper.deleteBucket() exception :%s' % e)
         return None
 
 # end class S3_helper
